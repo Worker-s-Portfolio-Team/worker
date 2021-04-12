@@ -34,7 +34,8 @@ function render(results) {
 */
 
 function render(results) {
-    let list = '<div class="row">';
+    let list = '<div class="container">';
+    list += '<div class="row">';
     for (let result of results.results) {
         let now = new Date(result.start),
         badges = "";
@@ -51,6 +52,7 @@ function render(results) {
 		list += `</div>`;
 		list += `</div>`;		
     }
+    list += "</div>";
     list += "</div>";
     return list;
 } 
