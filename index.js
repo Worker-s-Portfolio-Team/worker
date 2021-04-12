@@ -34,7 +34,7 @@ function render(results) {
 */
 
 function render(results) {
-    let list = "<div>";
+    let list = '<div class="container">';
     for (let result of results.results) {
         let now = new Date(result.start),
         badges = "";
@@ -42,7 +42,7 @@ function render(results) {
 		badges += `<span class="badge badge-info">${label}</span>&nbsp;`;
 		date = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
 		list += `<div class="col-sm-12 col-md-12 col-lg-4">`;
-		list += `<div class="card">`;
+		list += `<div class="card mb-2">`;
 		list += `<div class="card-body">`;
 		list += `<a href="https://events.predicthq.com/events/${result.id}">${result.title}</a>`;
 		list += `<p class="card-text">Begins on ${date}</p>`;
