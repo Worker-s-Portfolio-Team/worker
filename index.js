@@ -4,8 +4,8 @@ addEventListener("fetch", (event) => {
   
 async function handleRequest(event) {
     let data = await dataFetch(event);
-    data = render(await data.json());
-    return new HTMLRewriter().on("section", new ElementHandler(data, event.request.cf.country)).transform(await fetch("https://concert.goalastair.com"));
+    data = render(await data.json(), event.request.cf.country);
+    return new HTMLRewriter().on("section", new ElementHandler(data)).transform(await fetch("https://concert.goalastair.com"));
 }
 
 async function dataFetch(event) {
@@ -23,7 +23,7 @@ async function dataFetch(event) {
     return res;
 }
 
-function render(results) {
+function render(results, country) {
     let list = '<div class="container py-3">';
     list += `<h2>Viewing results from <span id="cf-country" class="flag-icon flag-icon-${country}"></span></h2>`;
     list += '<div class="row">';
