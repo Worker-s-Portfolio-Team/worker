@@ -8,7 +8,7 @@ async function handleRequest(req) {
     data.headers.set("Authorization", AUTH);
     let res = await fetch(data);
     data = render(await res.json());
-    return new HTMLRewriter().on("ul", new ElementHandler(data)).transform(await fetch("https://concert.goalastair.com"));
+    return new HTMLRewriter().on("section", new ElementHandler(data)).transform(await fetch("https://concert.goalastair.com"));
 }
   
 /* 
