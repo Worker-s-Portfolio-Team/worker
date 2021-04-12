@@ -17,7 +17,7 @@ async function dataFetch(event) {
     if (!res) {
         res = await fetch(cacheKey);
         res = new Response(res.body, res);
-        res.headers.append("Cache-Control", "s-maxage=10");
+        res.headers.append("Cache-Control", "s-maxage=3600");
         event.waitUntil(cache.put(cacheKey, res.clone()));
     }
     return res;
