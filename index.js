@@ -1,17 +1,9 @@
 addEventListener("fetch", (event) => {
-    event.respondWith(handleRequest(event.request));
+    event.respondWith(handleRequest(event));
 });
   
-async function handleRequest(req) {
-    let url = new URL(req.url);
-    let data = new Request(`https://api.predicthq.com/v1/events/?category=concerts%2Cfestivals&country=${req.cf.country}`);
-    data.headers.set("Authorization", AUTH);
-    let res = await fetch(data, {
-        cf: {
-            cacheTtl: 3600,
-            cacheEverything: true
-        }
-      });
+async function handleRequest(event) {
+    let data = dataFetch(event)
     data = render(await res.json());
     return new HTMLRewriter().on("section", new ElementHandler(data)).transform(await fetch("https://concert.goalastair.com"));
 }
@@ -37,6 +29,21 @@ function render(results) {
     return list;
 } 
 */
+
+async function dataFetch(event) {
+    const fetchURL = `https://api.predicthq.com/v1/events/?category=concerts%2Cfestivals&country=${event.request.cf.country}`;
+    let cacheKey = new Request(fetchURL);
+    cacheKey.headers.set("Authorization", AUTH);
+    const cache = caches.default;
+    let res = await cache.match(cacheKey);
+    if (!res) {
+        res = await fetch(cacheKey);
+        res = new Response(res.body, res);
+        response.headers.append("Cache-Control", "s-maxage=10");
+        event.waitUntil(cache.put(cacheKey, res.clone()));
+    }
+    return res;
+}
 
 function render(results) {
     let list = '<div class="container py-3">';
