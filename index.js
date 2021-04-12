@@ -12,7 +12,7 @@ async function handleRequest(req) {
 }
   
 function render(results) {
-    let list = "<div class=\"card-group\">";
+    let list = "<div>";
     for (let result of results.results) {
         let now = new Date(result.start),
         badges = "";
