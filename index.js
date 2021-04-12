@@ -25,7 +25,7 @@ async function dataFetch(event) {
 
 function render(results, country) {
     let list = '<div class="container py-3">';
-    list += `<h2>Viewing results from <span id="cf-country" class="flag-icon flag-icon-${country}"></span></h2>`;
+    list += `<h2 class="text-center">Viewing results from <span id="cf-country" class="flag-icon flag-icon-${country}"></span></h2>`;
     list += '<div class="row">';
     for (let result of results.results) {
         let now = new Date(result.start),
