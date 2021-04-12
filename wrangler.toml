@@ -1,6 +1,6 @@
 name = "portfolio"
 type = "webpack"
-account_id = ""
+account_id = "864cdf76f8254fb5539425299984d766"
 workers_dev = false
-route = ""
-zone_id = ""
+route = "https://concert.goalastair.com"
+zone_id = "bce060010725e72767113b412632a852"
