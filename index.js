@@ -34,7 +34,7 @@ function render(results) {
 */
 
 function render(results) {
-    let list = '<div class="container mt-3">';
+    let list = '<div class="container py-5">';
     list += '<div class="row">';
     for (let result of results.results) {
         let now = new Date(result.start),
