@@ -4,7 +4,7 @@ addEventListener("fetch", (event) => {
   
 async function handleRequest(event) {
     let data = await dataFetch(event);
-    data = render(await data.json(), event.request.cf.country);
+    data = render(await data.json(), event.request.cf.country.toLowerCase());
     return new HTMLRewriter().on("section", new ElementHandler(data)).transform(await fetch("https://concert.goalastair.com"));
 }
 
