@@ -11,21 +11,45 @@ async function handleRequest(req) {
     return new HTMLRewriter().on("ul", new ElementHandler(data)).transform(await fetch("https://concert.goalastair.com"));
 }
   
+/* 
 function render(results) {
-    let list = "<div>";
+    let list = "<div class=\"card-group\">";
     for (let result of results.results) {
         let now = new Date(result.start),
         badges = "";
         for(let label of result.labels)
             badges += `<span class="badge badge-info">${label}</span>&nbsp;`;
         date = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
-        list += `<div class="col-sm-12 col-md-12 col-lg-4"><div class="card text-center">
+        list += `<div class="card text-center">
             <div class="card-body">
                 <a href="https://events.predicthq.com/events/${result.id}">${result.title}</a>
                 <p class="card-text">Begins on ${date}</p>
                 ${badges}
             </div>
-        </div></div>`;
+        </div>`;
+    }
+    list += "</div>";
+    return list;
+} 
+*/
+
+function render(results) {
+    let list = "<div>";
+    for (let result of results.results) {
+        let now = new Date(result.start),
+        badges = "";
+        for(let label of result.labels)
+		badges += `<span class="badge badge-info">${label}</span>&nbsp;`;
+		date = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
+		list += `<div class="col-sm-12 col-md-12 col-lg-4">`;
+		list += `<div class="card">`;
+		list += `<div class="card-body">`;
+		list += `<a href="https://events.predicthq.com/events/${result.id}">${result.title}</a>`;
+		list += `<p class="card-text">Begins on ${date}</p>`;
+		list += `${badges}`;
+		list += `</div>`;
+		list += `</div>`;
+		list += `</div>`;		
     }
     list += "</div>";
     return list;
