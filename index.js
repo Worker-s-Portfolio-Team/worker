@@ -50,7 +50,7 @@ function render(results) {
 		list += `<div class="col-sm-12 col-md-12 col-lg-4">`;
 		list += `<div class="card mb-2">`;
 		list += `<div class="card-body">`;
-		list += `<a href="https://events.predicthq.com/events/${result.id}">${result.title}</a>`;
+		list += `<a href="https://events.predicthq.com/events/${result.id}" target="_blank">${result.title}</a>`;
 		list += `<p class="card-text text-muted">Begins on ${date}</p>`;
 		list += `${badges}`;
 		list += `</div>`;
