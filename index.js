@@ -4,7 +4,7 @@ addEventListener("fetch", (event) => {
   
 async function handleRequest(event) {
     let data = dataFetch(event)
-    data = render(await res.json());
+    data = render(await data.json());
     return new HTMLRewriter().on("section", new ElementHandler(data)).transform(await fetch("https://concert.goalastair.com"));
 }
   
@@ -39,7 +39,7 @@ async function dataFetch(event) {
     if (!res) {
         res = await fetch(cacheKey);
         res = new Response(res.body, res);
-        response.headers.append("Cache-Control", "s-maxage=10");
+        res.headers.append("Cache-Control", "s-maxage=10");
         event.waitUntil(cache.put(cacheKey, res.clone()));
     }
     return res;
@@ -77,4 +77,4 @@ class ElementHandler {
       console.log(this.data);
       element.replace(this.data, {html: true})
     }
-  }
+}
